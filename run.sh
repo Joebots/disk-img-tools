@@ -17,6 +17,10 @@ if [[ -n $STG2EXEC ]]; then
 
 	# download and prep nodejs
 	. $BUILD_HOME/get-node.sh
+	
+	# overlay file system
+	echo synching file system from $BUILD_HOME/fs-overlay t- $FSROOT
+	sudo rsync -av $BUILD_HOME/fs-overlay/ $ROOTFS
 
 	cp $STG2EXEC /tmp/`basename $STG2EXEC`
 	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash /tmp/`basename $STG2EXEC` $QARCH

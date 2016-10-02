@@ -47,14 +47,12 @@ if [[ !(-n $QARCH) ]]; then
     echo "No qemu architecture specified"
     ERR=true
 else
-    echo "qemu-${QARCH}"
+    echo "using qemu executable: qemu-${QARCH}"
 fi
 
 if [[ !(-n $BUILD_HOME/$QARCH.sh) ]]; then
     echo "No qemu architecture environment file exists"
     ERR=true
-else
-    echo "qemu-${QARCH}"
 fi
 
 

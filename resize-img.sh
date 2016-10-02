@@ -23,7 +23,6 @@ esac
 shift # past argument or value
 done
 
-
 usage(){ echo "resize-img.sh -i <disk img> -s <increased volume>"; }
 
 if [[ !(-n $DISKIMG) ]]; then
