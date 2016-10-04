@@ -40,6 +40,7 @@ if [[ !(-n $DISKIMG) ]]; then
     echo "No disk image specified"
     ERR=true
 else
+    OS=`basename $DISKIMG | sed 's/\..*//g'`
     echo "disk image:${DISKIMG}"
 fi
 

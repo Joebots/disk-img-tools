@@ -5,5 +5,5 @@ sudo losetup -d /dev/loop0
 
 echo deleting unmounted filesystem dirs
 sudo rm -fr $BOOTFS $ROOTFS
-sudo rm /tmp/$QARCH.sh
+sudo rm /tmp/`basename $DISKIMG`.sh
 

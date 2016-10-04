@@ -1,5 +1,5 @@
 # load nodejs env
-. $BUILD_HOME/arch-env/$QARCH.sh
+. $BUILD_HOME/arch-env/`basename $DISKIMG`.sh
 
 cd /tmp
 

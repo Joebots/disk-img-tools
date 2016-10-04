@@ -3,11 +3,11 @@ BUILD_HOME=/home/joebotics/jb-host/raspi-build
 # parse cli args
 . $BUILD_HOME/parse-args.sh
 
-# set up environment variables
-. $BUILD_HOME/set-env.sh
-
 # mount disk image
 . $BUILD_HOME/mount.sh
+
+# set up environment variables
+. $BUILD_HOME/set-env.sh
 
 echo executing chroot
 if [[ -n $STG2EXEC ]]; then
@@ -23,7 +23,7 @@ if [[ -n $STG2EXEC ]]; then
 	sudo rsync -av $BUILD_HOME/fs-overlay/ $ROOTFS
 
 	cp $STG2EXEC /tmp/`basename $STG2EXEC`
-	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash /tmp/`basename $STG2EXEC` $QARCH
+	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash /tmp/`basename $STG2EXEC` $OS
 
 else
 	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash 

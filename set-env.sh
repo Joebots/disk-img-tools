@@ -1,15 +1,14 @@
-ARCH_ENV=$BUILD_HOME/arch-env/$QARCH.sh
 
-if [[ !(-n $ARCH_ENV) ]]; then
-    echo cannot find environment file for $QARCH
+if [[ !(-n $OS_ENV) ]]; then
+    echo cannot find environment file $OS_ENV
     exit
 fi
 
-echo loading environment $ARCH_ENV
-. $ARCH_ENV
-cp $ARCH_ENV /tmp/
-ls -l /tmp/$QARCH.sh
-sleep 5
+echo loading environment $OS_ENV
+. $OS_ENV
 
-npm_config_arch=$NODEJS_ARCH
+echo copying environment to /tmp for use in stage 2 chroot scripts
+cp $OS_ENV /tmp/
+ls -l /tmp/`basename $DISKIMG`.sh
+
 
