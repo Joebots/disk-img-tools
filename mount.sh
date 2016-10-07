@@ -1,7 +1,3 @@
-ROOTFS=$BUILD_HOME/`basename $DISKIMG`-root
-BOOTFS=$BUILD_HOME/`basename $DISKIMG`-boot
-OS_ENV=$BUILD_HOME/arch-env/`basename $DISKIMG`.sh
-
 # mount disk image
 echo ============================================================
 printf "mounting $DISKIMG to \n\t$BOOTFS \n\t$ROOTFS\n"

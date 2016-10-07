@@ -1,4 +1,4 @@
-DEPENDENCIES="lsusb rsync tightvncserver vim git chromium-browser"
+DEPENDENCIES="rsync tightvncserver vim git chromium-browser"
 
 NODEJS_VER=v4.6.0
 NODEJS_ARCH=arm64

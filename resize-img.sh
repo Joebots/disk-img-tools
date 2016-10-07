@@ -9,7 +9,7 @@ case $key in
     ;;
 
     -s|--size) 
-    INCREASE="$2"
+    SIZE="$2"
     shift # past argument
     ;;
 
@@ -23,7 +23,7 @@ esac
 shift # past argument or value
 done
 
-usage(){ echo "resize-img.sh -i <disk img> -s <increased volume>"; }
+usage(){ echo "resize-img.sh -i <disk img> -s <increase>"; }
 
 if [[ !(-n $DISKIMG) ]]; then
 	ERR=true
@@ -31,10 +31,10 @@ else
 	echo "disk image:$DISKIMG"
 fi
 
-if [[ !(-n $INCREASE) ]]; then
+if [[ !(-n $SIZE) ]]; then
         ERR=true
 else
-	echo "increase:$INCREASE"
+	echo "increase:$SIZE"
 fi
 
 if [[ (-o ERR) ]]; then
@@ -42,7 +42,7 @@ if [[ (-o ERR) ]]; then
 	exit	
 fi
 
-sudo truncate -s +`echo $INCREASE`M $DISKIMG
+sudo truncate -s +${SIZE}M $DISKIMG
 
 LBDEV=`sudo losetup -f`
 

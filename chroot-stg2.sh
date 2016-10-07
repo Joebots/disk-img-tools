@@ -12,8 +12,8 @@ echo ==================
 cat /tmp/$OS_ENV
 echo ==================
 
-apt-get -y update
-apt-get -y install $DEPENDENCIES 
+#apt-get -y update
+#apt-get -y install $DEPENDENCIES 
 
 # set up nodejs
 printf "\n\n=========== setting up nodejs symlinks for $NODEJS_ID\n"
@@ -27,7 +27,7 @@ ln -s /opt/joebotics/nodejs/bin/npm     /usr/local/bin/npm
 printf "\n\n=========== installing odroid global module in /opt/joebotics/lib/node_modules\n"
 mkdir -p /opt/joebotics/lib/node_modules
 cd /opt/joebotics/lib
-npm install odroid-gpio
+#/usr/bin/npm install odroid-gpio
 
 # fix permissions
 chown -R root:root /opt/joebotics

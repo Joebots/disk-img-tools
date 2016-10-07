@@ -1,0 +1,6 @@
+# Default settings for chromium-browser. This file is sourced by /bin/sh from
+# /usr/bin/chromium-browser
+
+# Options to pass to chromium-browser
+#CHROMIUM_FLAGS=" --use-gl=egl --ignore-gpu-blacklist --disable-accelerated-2d-canvas --num-raster-threads=2"
+CHROMIUM_FLAGS=" --disable-namespace-sandbox --ignore-gpu-blacklist --num-raster-threads=2"

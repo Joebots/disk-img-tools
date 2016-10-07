@@ -1,4 +1,37 @@
 #!/bin/bash
+for var in "$@"
+do
+    if [[ "$var" == "--fetch-code" ]]; then
+        FETCH_CODE=true
+        echo "FETCHING CODE."
+    fi;
+    
+    if [[ "$var" == "--clone-code" ]]; then
+        CLONE_CODE=true
+        echo "CLONING CODE."
+    fi;
+    
+    if [[ "$var" == "--clean-code" ]]; then
+        CLEAN_CODE=true
+        echo "CLEANING CODE."
+    fi;
+    
+    if [[ "$var" == "--copy-code" ]]; then
+        COPY_CODE=true
+        echo "COPYING LOCAL CODE."
+    fi;
+    
+    if [[ "$var" == "--copy-node" ]]; then
+        COPY_NODE=true
+        echo "COPYING LOCAL NODEJS INSTALL."
+    fi;
+    
+    if [[ "$var" == "--install-node" ]]; then
+        INSTALL_NODE=true
+        echo "INSTALLING NODEJS LOCALLY FOR DEPLOYMENT ON DISK IMAGES."
+    fi;
+done
+
 # Use -gt 1 to consume two arguments per pass in the loop (e.g. each
 # argument has a corresponding value to go with it).
 # Use -gt 0 to consume one or more arguments per pass in the loop (e.g.
@@ -11,6 +44,8 @@ key="$1"
 case $key in
     -i|--diskimg)
     DISKIMG="$2"
+    OS=`basename $DISKIMG | sed 's/\.img//g'`
+    OS_ENV=$BUILD_HOME/arch-env/$OS.img.sh    
     shift # past argument
     ;;
 
@@ -24,8 +59,21 @@ case $key in
     shift # past argument
     ;;
 
-    --default)
-    DEFAULT=YES
+    --clean)
+    CLEAN=true
+    shift # past argument
+    ;;
+
+    --fetch)
+    FETCH=true
+    ;;
+    
+    --clone)
+    CLONE=true
+    ;;
+    
+    --node)
+    INSTALL_NODE=true
     ;;
     *)
             # unknown option
@@ -40,7 +88,6 @@ if [[ !(-n $DISKIMG) ]]; then
     echo "No disk image specified"
     ERR=true
 else
-    OS=`basename $DISKIMG | sed 's/\..*//g'`
     echo "disk image:${DISKIMG}"
 fi
 
@@ -51,7 +98,7 @@ else
     echo "using qemu executable: qemu-${QARCH}"
 fi
 
-if [[ !(-n $BUILD_HOME/$QARCH.sh) ]]; then
+if [[ !(-n $OS_ENV.sh) ]]; then
     echo "No qemu architecture environment file exists"
     ERR=true
 fi

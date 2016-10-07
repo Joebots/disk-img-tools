@@ -1,31 +1,37 @@
 BUILD_HOME=/home/joebotics/jb-host/raspi-build
+JOEBOTICS_HOME=/home/joebotics/jb-src
+FS_OVERLAY=$BUILD_HOME/fs-overlay
 
 # parse cli args
 . $BUILD_HOME/parse-args.sh
 
-# mount disk image
-. $BUILD_HOME/mount.sh
-
 # set up environment variables
 . $BUILD_HOME/set-env.sh
 
-echo executing chroot
+# mount disk image
+. $BUILD_HOME/mount.sh
+
+
+# download code from git master
+. $BUILD_HOME/get-code.sh
+
+# download and prep nodejs
+. $BUILD_HOME/get-node.sh
+	
+# overlay file system
+echo synching file system from $FS_OVERLAY to $FSROOT
+echo sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/ $ROOTFS
+sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/ $ROOTFS
+
 if [[ -n $STG2EXEC ]]; then
-	
-	# download code from git master
-	. $BUILD_HOME/get-code.sh
-
-	# download and prep nodejs
-	. $BUILD_HOME/get-node.sh
-	
-	# overlay file system
-	echo synching file system from $BUILD_HOME/fs-overlay t- $FSROOT
-	sudo rsync -av $BUILD_HOME/fs-overlay/ $ROOTFS
-
+        
+        # chroot and run STG2EXEC
+	echo executing chroot script $STG2EXEC
 	cp $STG2EXEC /tmp/`basename $STG2EXEC`
 	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash /tmp/`basename $STG2EXEC` $OS
 
 else
+        echo executing chroot
 	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash 
 fi
 
