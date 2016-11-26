@@ -1,4 +1,5 @@
 echo unmounting kpartx loopback connectors
+sync
 sudo umount /dev/mapper/loop0p*
 sudo dmsetup remove /dev/mapper/loop*
 sudo losetup -d /dev/loop0

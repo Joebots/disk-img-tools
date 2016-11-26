@@ -11,27 +11,30 @@ FS_OVERLAY=$BUILD_HOME/fs-overlay
 # mount disk image
 . $BUILD_HOME/mount.sh
 
-
 # download code from git master
 . $BUILD_HOME/get-code.sh
 
 # download and prep nodejs
 . $BUILD_HOME/get-node.sh
-	
+
 # overlay file system
-echo synching file system from $FS_OVERLAY to $FSROOT
-echo sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/ $ROOTFS
-sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/ $ROOTFS
+echo synching file systems from $FS_OVERLAY
+sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/opt/ $ROOTFS/opt
+#sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/etc/ $ROOTFS/etc
+#sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/home/joebotics/ $ROOTFS/home/joebotics
+
+#echo sudo rsync -av $BUILD_HOME/fs-overlay/boot-fs/ $BOOTFS
+sudo cp -fr $BUILD_HOME/fs-overlay/boot-fs/* $BOOTFS
 
 if [[ -n $STG2EXEC ]]; then
         
-        # chroot and run STG2EXEC
+	# chroot and run STG2EXEC
 	echo executing chroot script $STG2EXEC
 	cp $STG2EXEC /tmp/`basename $STG2EXEC`
 	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash /tmp/`basename $STG2EXEC` $OS
 
 else
-        echo executing chroot
+	echo executing chroot
 	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash 
 fi
 

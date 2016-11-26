@@ -16,7 +16,7 @@ echo ==================
 #apt-get -y install $DEPENDENCIES 
 
 # set up nodejs
-printf "\n\n=========== setting up nodejs symlinks for $NODEJS_ID\n"
+printf "\n\n=========== setting up symlinks for $NODEJS_ID\n"
 ln -s /opt/joebotics/$NODEJS_ID         /opt/joebotics/nodejs
 ln -s /opt/joebotics/nodejs/bin/node    /usr/bin/node 
 ln -s /opt/joebotics/nodejs/bin/npm     /usr/bin/npm
@@ -30,7 +30,9 @@ cd /opt/joebotics/lib
 #/usr/bin/npm install odroid-gpio
 
 # fix permissions
+printf "\n\n=========== fixing permissions\n"
 chown -R root:root /opt/joebotics
+chown -R odroid:odroid /home/odroid
 
 
 
