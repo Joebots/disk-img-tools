@@ -1,5 +1,13 @@
-BUILD_HOME=/home/joebotics/jb-host/raspi-build
-JOEBOTICS_HOME=/home/joebotics/jb-src
+#!/usr/bin/env bash
+
+if [[ !(-n $BUILD_HOME) ]]; then
+    BUILD_HOME=/home/joebotics/jb-host/raspi-build
+fi
+
+if [[ !(-n $JOEBOTICS_HOME) ]]; then
+    JOEBOTICS_HOME=/home/joebotics/jb-src
+fi
+
 FS_OVERLAY=$BUILD_HOME/fs-overlay
 
 # parse cli args

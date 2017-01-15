@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # download code from git master
 JB_NODE_SRC=$JOEBOTICS_HOME/node-projects
 JB_DEST_HOME=$ROOTFS/opt/joebotics

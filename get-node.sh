@@ -12,7 +12,8 @@ if [[ -n $INSTALL_NODE ]]; then
     cd $JOEBOTICS_HOME/${OS}
     
     if [[ !(-d $NODEJS_FILE) ]]; then
-        wget -o https://nodejs.org/dist/$NODEJS_VER/$NODEJS_FILE
+        set | grep NODE
+        wget -o $NODEJS_VER-$NODEJS_FILE-download.log https://nodejs.org/dist/$NODEJS_VER/$NODEJS_FILE
         unxz $NODEJS_FILE
         sudo rm -fr $NODEJS_ID
         tar -xf $NODEJS_ID.tar

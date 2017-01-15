@@ -1,6 +1,9 @@
 ROOTFS=$BUILD_HOME/${OS}-root
 BOOTFS=$BUILD_HOME/${OS}-boot
-NODE_PROJECTS=/home/joebotics/
+
+if [[ !(-n $NODE_PROJECTS) ]]; then
+    NODE_PROJECTS=/home/joebotics/
+fi
 
 if [[ !(-n $OS_ENV) ]]; then
     echo cannot find environment file $OS_ENV
