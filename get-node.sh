@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+echo; echo; echo "================================ get-node.sh start ======================================"
+
 if [[ -n $INSTALL_NODE ]]; then
 
     # load nodejs env
@@ -45,3 +49,5 @@ if [[ -n $COPY_NODE ]]; then
 fi
 
 cd $BUILD_HOME
+
+echo "================================ get-node.sh done ======================================"

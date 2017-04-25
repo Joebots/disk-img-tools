@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+echo; echo; echo "================================ parse-args.sh start ======================================"
+
 for var in "$@"
 do
     if [[ "$var" == "--fetch-code" ]]; then
@@ -115,3 +118,4 @@ else
     echo "Executing script '${STG2EXEC}' in chroot"
 fi
 
+echo "================================ parse-args.sh done ======================================"

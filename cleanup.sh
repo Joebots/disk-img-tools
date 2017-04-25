@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+echo; echo; echo "================================ cleanup.sh start ======================================"
+
 echo unmounting kpartx loopback connectors
 sync
 sudo umount /dev/mapper/loop0p*
@@ -8,3 +12,4 @@ echo deleting unmounted filesystem dirs
 sudo rm -fr $BOOTFS $ROOTFS
 sudo rm /tmp/${OS}.img.sh
 
+echo "================================ cleanup.sh end ======================================"

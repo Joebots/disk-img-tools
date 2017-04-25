@@ -1,11 +1,14 @@
 #!/usr/bin/env bash
 
+echo; echo; echo "================================ run.sh start ======================================"
+
 if [[ !(-n $BUILD_HOME) ]]; then
     BUILD_HOME=/home/joebotics/jb-host/raspi-build
 fi
 
 if [[ !(-n $JOEBOTICS_HOME) ]]; then
     JOEBOTICS_HOME=/home/joebotics/jb-src
+    mkdir -p $JOEBOTICS_HOME
 fi
 
 FS_OVERLAY=$BUILD_HOME/fs-overlay
@@ -49,3 +52,4 @@ fi
 # umount, rmdirs, etc
 . $BUILD_HOME/cleanup.sh
 
+echo "================================ run.sh done ======================================"

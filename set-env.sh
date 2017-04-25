@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+echo; echo; echo "================================ set-env.sh start ======================================"
+
 ROOTFS=$BUILD_HOME/${OS}-root
 BOOTFS=$BUILD_HOME/${OS}-boot
 
@@ -16,3 +20,5 @@ ls -l /tmp/${OS}.img.sh
 
 echo loading environment $OS_ENV
 . /tmp/${OS}.img.sh
+
+echo "================================ set-env.sh end ======================================"

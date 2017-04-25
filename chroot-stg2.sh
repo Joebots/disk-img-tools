@@ -1,4 +1,8 @@
+#!/usr/bin/env bash
+
 printf "\n\n\n"
+echo "================================ chroot-stg2.sh start ======================================"
+
 echo ======================================================================================================================================================
 echo "| chroot stage 2 in \"`uname -a`\" |"
 echo ======================================================================================================================================================
@@ -31,8 +35,10 @@ cd /opt/joebotics/lib
 
 # fix permissions
 printf "\n\n=========== fixing permissions\n"
-chown -R root:root /opt/joebotics
+chown -R root:odroid /opt
+chown -R root:odroid /opt/joebotics
 chown -R odroid:odroid /home/odroid
 
 
+echo "================================ chroot-stg2.sh done ======================================"
 
