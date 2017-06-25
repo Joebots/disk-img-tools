@@ -35,9 +35,24 @@ cd /opt/joebotics/lib
 
 # fix permissions
 printf "\n\n=========== fixing permissions\n"
-chown -R root:odroid /opt
+
+# simmer launcher......
+chown root:odroid /opt/joebotics/bin/launch-simmer.sh
+chmod g+x /opt/joebotics/bin/launch-simmer.sh
+
+# simmer killer......
+chown root:odroid /opt/joebotics/bin/stop-simmer.sh
+chmod g+x /opt/joebotics/bin/stop-simmer.sh
+
+# everything else......
+chown root:odroid /opt
+chown root:odroid /opt/joebotics
 chown -R root:odroid /opt/joebotics
 chown -R odroid:odroid /home/odroid
+
+# add applications to PATH
+ln -s /opt/joebotics/bin/launch-simmer.sh /usr/local/bin/launch-simmer
+ln -s /opt/joebotics/bin/stop-simmer.sh /usr/local/bin/stop-simmer
 
 
 echo "================================ chroot-stg2.sh done ======================================"

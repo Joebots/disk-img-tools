@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-echo; echo; echo "================================ cleanup.sh start ======================================"
+echo "================================ cleanup.sh start ======================================"
 
 echo unmounting kpartx loopback connectors
 sync
