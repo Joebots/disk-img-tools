@@ -3,11 +3,11 @@
 echo; echo; echo "================================ run.sh start ======================================"
 
 if [[ !(-n $BUILD_HOME) ]]; then
-    BUILD_HOME=/home/joebotics/jb-host/raspi-build
+    BUILD_HOME=$(pwd)
 fi
 
 if [[ !(-n $JOEBOTICS_HOME) ]]; then
-    JOEBOTICS_HOME=/home/joebotics/jb-src
+    JOEBOTICS_HOME=$BUILD_HOME/jb-src
     mkdir -p $JOEBOTICS_HOME
 fi
 
@@ -31,8 +31,8 @@ FS_OVERLAY=$BUILD_HOME/fs-overlay
 # overlay file system
 echo synching file systems from $FS_OVERLAY
 sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/opt/ $ROOTFS/opt
-#sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/etc/ $ROOTFS/etc
-#sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/home/joebotics/ $ROOTFS/home/joebotics
+sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/etc/ $ROOTFS/etc
+sudo rsync -av $BUILD_HOME/fs-overlay/root-fs/home/odroid/ $ROOTFS/home/odroid
 
 #echo sudo rsync -av $BUILD_HOME/fs-overlay/boot-fs/ $BOOTFS
 sudo cp -fr $BUILD_HOME/fs-overlay/boot-fs/* $BOOTFS
