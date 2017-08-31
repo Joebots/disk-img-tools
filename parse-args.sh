@@ -61,6 +61,11 @@ case $key in
     STG2EXEC="$2"
     shift # past argument
     ;;
+    
+    -b|--branch)
+    BRANCH="$2"
+    shift # past argument
+    ;;
 
     --clean)
     CLEAN=true

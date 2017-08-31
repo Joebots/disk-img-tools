@@ -7,6 +7,10 @@ JB_NODE_SRC=$JOEBOTICS_HOME/node-projects
 JB_DEST_HOME=$ROOTFS/opt/joebotics
 JB_NODE_DEST=$JB_DEST_HOME/node-projects
 
+if [[ !(-n $BRANCH) ]]; then
+    BRANCH="master"
+fi
+
 echo ============================================================
 echo "get-code.sh $JOEBOTICS_HOME"
 cd $JOEBOTICS_HOME
@@ -23,6 +27,7 @@ if [[ -n $FETCH_CODE ]]; then
     echo ============================================================
     echo "fetching into $JB_NODE_SRC"
     cd $JB_NODE_SRC
+    git checkout $BRANCH
     git fetch
     COPY_CODE=true
 fi
@@ -34,7 +39,7 @@ if [[ -n $CLONE_CODE ]]; then
     #mkdir -p $JB_NODE_SRC
     #cd $JB_NODE_SRC
     cd $JOEBOTICS_HOME
-    git clone git@github.com:Joebots/node-projects.git
+    git clone -b $BRANCH git@github.com:Joebots/node-projects.git
     cd node-projects/build
     npm install
     #sudo rm -fr $JB_NODE_DEST

@@ -6,7 +6,7 @@ ROOTFS=$BUILD_HOME/${OS}-root
 BOOTFS=$BUILD_HOME/${OS}-boot
 
 if [[ !(-n $NODE_PROJECTS) ]]; then
-    NODE_PROJECTS=/home/joebotics/
+    NODE_PROJECTS=/home/odroid/
 fi
 
 if [[ !(-n $OS_ENV) ]]; then
