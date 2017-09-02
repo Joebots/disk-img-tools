@@ -46,6 +46,9 @@ if [[ -n $COPY_NODE ]]; then
     
     echo sudo cp -r $JOEBOTICS_HOME/${OS}/$NODEJS_ID $ROOTFS/opt/joebotics
     sudo cp -r $JOEBOTICS_HOME/${OS}/$NODEJS_ID $ROOTFS/opt/joebotics
+
+    # A symlink to binary node file
+    sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot ln -fs /opt/joebotics/$NODEJS_ID/bin/node /usr/local/bin/node
 fi
 
 cd $BUILD_HOME
