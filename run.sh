@@ -49,6 +49,10 @@ else
 	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash 
 fi
 
+# add odroid user to gpio group
+sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot addgroup gpio
+sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot usermod -a -G gpio odroid
+
 # umount, rmdirs, etc
 . $BUILD_HOME/cleanup.sh
 
