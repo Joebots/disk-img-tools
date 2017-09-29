@@ -44,9 +44,9 @@ if [[ -n $STG2EXEC ]]; then
 	cp $STG2EXEC /tmp/`basename $STG2EXEC`
 	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash /tmp/`basename $STG2EXEC` $OS
 
-else
-	echo executing chroot
-	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash 
+#else
+	#echo executing chroot
+	#sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash 
 fi
 
 # add odroid user to gpio group

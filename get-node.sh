@@ -8,7 +8,7 @@ if [[ -n $INSTALL_NODE ]]; then
     . $BUILD_HOME/arch-env/${OS}.img.sh
 
     if [[ !(-d $ROOTFS/opt/joebotics/$NODEJS_ID) ]]; then
-        rm -fr $ROOTFS/opt/joebotics/$NODEJS_ID
+        sudo rm -fr $ROOTFS/opt/joebotics/$NODEJS_ID
     fi
     
     echo saving nodejs download in $JOEBOTICS_HOME/${OS}
@@ -38,7 +38,7 @@ if [[ -n $COPY_NODE ]]; then
     
     if [[ -d $ROOTFS/opt/joebotics/$NODEJS_ID ]]; then
         echo deleting existing nodejs install at $ROOTFS/opt/joebotics/$NODEJS_ID
-        rm -fr $ROOTFS/opt/joebotics/$NODEJS_ID
+        sudo rm -fr $ROOTFS/opt/joebotics/$NODEJS_ID
     fi
     
     echo sudo mkdir -p $ROOTFS/opt/joebotics/$NODEJS_ID
