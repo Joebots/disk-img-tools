@@ -44,10 +44,14 @@ if [[ -n $STG2EXEC ]]; then
 	cp $STG2EXEC /tmp/`basename $STG2EXEC`
 	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash /tmp/`basename $STG2EXEC` $OS
 
-else
-	echo executing chroot
-	sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash 
+#else
+	#echo executing chroot
+	#sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot /bin/bash 
 fi
+
+# add odroid user to gpio group
+sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot addgroup gpio
+sudo proot -q qemu-$QARCH -S $ROOTFS -b $BOOTFS:/boot usermod -a -G gpio odroid
 
 # umount, rmdirs, etc
 . $BUILD_HOME/cleanup.sh
